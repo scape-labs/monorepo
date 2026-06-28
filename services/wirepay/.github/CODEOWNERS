@@ -1,0 +1,4 @@
+# wirepay ownership.
+# Falls back to the workspace-level /scape-labs/team-wirepay handle if absent.
+
+/                                      @scape-labs/team-wirepay

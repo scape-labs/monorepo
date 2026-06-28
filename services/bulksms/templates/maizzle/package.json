@@ -1,0 +1,12 @@
+{
+  "name": "@bulksms/maizzle",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "maizzle serve",
+    "build": "maizzle build production"
+  },
+  "dependencies": {
+    "@maizzle/framework": "TODO-pin-version"
+  }
+}

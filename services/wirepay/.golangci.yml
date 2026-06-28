@@ -1,0 +1,15 @@
+# Per-service golangci-lint config.
+# Inherits everything not overridden here from the workspace-level .golangci.yml.
+
+# TODO: add service-specific exclusions (e.g. relax gocritic in test files).
+run:
+  timeout: 3m
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused

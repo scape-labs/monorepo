@@ -1,0 +1,61 @@
+# Shared local-dev dependencies.
+# Bring up with: make dev-deps
+# Tear down with: make dev-deps-down
+#
+# Notes:
+# - Ports are non-default so they don't clash with other scape-labs work on the laptop.
+# - Each service's own docker-compose.dev.yml may add per-service extras on top.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: scape-postgres
+    environment:
+      POSTGRES_USER: scape
+      POSTGRES_PASSWORD: scape
+      POSTGRES_DB: scape
+    ports:
+      - "54329:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scape -d scape"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    container_name: scape-rabbitmq
+    ports:
+      - "56729:5672"
+      - "15672:1562" # management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: scape
+      RABBITMQ_DEFAULT_PASS: scape
+
+  valkey:
+    image: valkey/valkey:7-alpine
+    container_name: scape-valkey
+    ports:
+      - "63729:6379"
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: scape-mailpit
+    ports:
+      - "1025:1025" # SMTP
+      - "8025:8025" # UI
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.110.0
+    container_name: scape-otel
+    command: ["--config=/etc/otel/config.yaml"]
+    volumes:
+      - ./.dev/otel-collector.yaml:/etc/otel/config.yaml:ro
+    ports:
+      - "4317:4317" # OTLP gRPC
+      - "4318:4318" # OTLP HTTP
+
+volumes:
+  postgres-data:

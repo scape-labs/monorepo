@@ -1,0 +1,4 @@
+# flow-ussd ownership.
+# Falls back to the workspace-level /scape-labs/team-flow-ussd handle if absent.
+
+/                                      @scape-labs/team-flow-ussd

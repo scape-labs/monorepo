@@ -1,0 +1,42 @@
+# Go
+**/bin/
+**/*.test
+**/*.out
+coverage.out
+coverage.html
+*.prof
+
+# Build artifacts
+**/dist/
+**/build/
+
+# Local env / secrets
+.env
+.env.local
+*.env.local
+secrets.yaml
+service.local.yaml
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Editor / tool caches
+.cache/
+.golangci-cache/
+
+# Node / Nuxt (top-level — per-UI .gitignore covers the rest)
+ui/**/node_modules/
+ui/**/.nuxt/
+ui/**/.output/
+ui/**/.data/
+
+# Docker / compose volumes
+**/docker-data/
+postgres-data/
+rabbitmq-data/
+valkey-data/
+mailpit-data/

@@ -1,0 +1,4 @@
+# bulksms ownership.
+# Falls back to the workspace-level /scape-labs/team-bulksms handle if absent.
+
+/                                      @scape-labs/team-bulksms

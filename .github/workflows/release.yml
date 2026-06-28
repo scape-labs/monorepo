@@ -1,0 +1,36 @@
+# Workspace release workflow.
+# Each service gets its own image + semver tag based on conventional commits in
+# services/<svc>/.
+# TODO: wire up the actual changelog generation once we have a few releases.
+
+name: release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      services: ${{ steps.detect.outputs.services }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: detect
+        uses: scape-labs/ci-actions/actions/detect-changed-services@v1
+        with:
+          services: bulksms,wirepay,dura,flow,flow-ussd
+
+  release-service:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.services != ''
+    uses: scape-labs/ci-actions/.github/workflows/go-release.yml@v1
+    with:
+      services: ${{ needs.detect-changes.outputs.services }}

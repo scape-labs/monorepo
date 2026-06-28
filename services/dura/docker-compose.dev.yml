@@ -1,0 +1,12 @@
+# Per-service dev overrides on top of the workspace's docker-compose.dev.yml.
+# TODO: add any service-specific deps here (e.g. a Redis instance, a fake SMTP).
+
+services:
+  dura:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://scape:scape@postgres:5432/scape?sslmode=disable
+    ports:
+      - "8080:8080"

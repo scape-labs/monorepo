@@ -1,0 +1,19 @@
+openapi: 3.0.3
+info:
+  title: flow-ussd API
+  version: 0.0.1
+  description: |
+    TODO: replace this stub with the real spec.
+
+servers:
+  - url: http://localhost:8080
+    description: local
+
+paths: {}
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

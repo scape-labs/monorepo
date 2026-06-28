@@ -1,0 +1,48 @@
+# Workspace CI workflow.
+# Uses the reusable workflows from github.com/scape-labs/ci-actions.
+# TODO: split per-service matrices once the monorepo grows.
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    uses: scape-labs/ci-actions/.github/workflows/go-lint.yml@v1
+
+  test:
+    uses: scape-labs/ci-actions/.github/workflows/go-test.yml@v1
+    with:
+      matrix:
+        service:
+          - bulksms
+          - wirepay
+          - dura
+          - flow
+          - flow-ussd
+
+  build:
+    needs: [lint, test]
+    uses: scape-labs/ci-actions/.github/workflows/go-build.yml@v1
+    with:
+      matrix:
+        service:
+          - bulksms
+          - wirepay
+          - dura
+          - flow
+          - flow-ussd
+
+  ui-build:
+    uses: scape-labs/ci-actions/.github/workflows/ui-build.yml@v1
+    with:
+      matrix:
+        ui:
+          - bulksms-ui
+          - bulksms-admin-ui
+          - wirepay-ui
+          - dura-ui
+          - flow-ui

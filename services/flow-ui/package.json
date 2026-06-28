@@ -1,0 +1,25 @@
+{
+  "name": "@scape-labs/flow-ui",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "nuxt": "TODO-pin-version",
+    "vue": "TODO-pin-version",
+    "vue-router": "TODO-pin-version"
+  },
+  "devDependencies": {
+    "@nuxt/eslint-config": "TODO-pin-version",
+    "eslint": "TODO-pin-version",
+    "typescript": "TODO-pin-version",
+    "vue-tsc": "TODO-pin-version"
+  }
+}

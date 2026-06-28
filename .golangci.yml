@@ -1,0 +1,37 @@
+# Workspace-level golangci-lint config.
+# Each service may override this in services/<svc>/.golangci.yml.
+# TODO: tune once we have a sense of which linters catch real bugs vs noise.
+
+run:
+  timeout: 5m
+  tests: true
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - gosimple
+    - gocritic
+    - gofmt
+    - goimports
+    - misspell
+    - bodyclose
+    - errorlint
+    - contextcheck
+    - exhaustive
+    - nilerr
+    - prealloc
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - errcheck
+        - gosimple
+        - gocritic

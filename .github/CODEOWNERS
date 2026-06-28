@@ -1,0 +1,30 @@
+# Workspace-wide CODEOWNERS.
+# Service-specific overrides live in services/<svc>/.github/CODEOWNERS.
+
+# Default owners for anything not matched below.
+/                                          @scape-labs/platform
+
+# Cross-cutting workspace changes
+/go.work                                   @scape-labs/platform
+/Makefile                                  @scape-labs/platform
+/docker-compose.dev.yml                    @scape-labs/platform
+/.github/workflows/ci.yml                  @scape-labs/platform
+/.github/workflows/release.yml             @scape-labs/platform
+/.golangci.yml                             @scape-labs/platform
+
+# Shared libs
+/shared/                                   @scape-labs/platform
+
+# Per-service CODEOWNERS take precedence over this file.
+/services/bulksms/                         @scape-labs/team-bulksms
+/services/wirepay/                         @scape-labs/team-wirepay
+/services/dura/                            @scape-labs/team-dura
+/services/flow/                            @scape-labs/team-flow
+/services/flow-ussd/                       @scape-labs/team-flow
+
+# Per-UI CODEOWNERS (UIs use a separate file)
+/ui/bulksms-ui/                            @scape-labs/team-bulksms
+/ui/bulksms-admin-ui/                      @scape-labs/team-bulksms
+/ui/wirepay-ui/                            @scape-labs/team-wirepay
+/ui/dura-ui/                               @scape-labs/team-dura
+/ui/flow-ui/                               @scape-labs/team-flow

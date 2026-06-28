@@ -1,0 +1,16 @@
+# Local binary
+/bin/
+/dura
+
+# Local config
+service.local.yaml
+.env
+
+# Test artefacts
+coverage.out
+*.prof
+
+# Editor
+.DS_Store
+.idea/
+.vscode/

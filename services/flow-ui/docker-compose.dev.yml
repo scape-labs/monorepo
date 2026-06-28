@@ -1,0 +1,11 @@
+# Per-UI dev overrides.
+# Brings up the UI + a reverse proxy that forwards /api to the matching
+# service's docker-compose.dev.yml network.
+
+services:
+  flow-ui:
+    build: .
+    ports:
+      - "3000:80"
+    environment:
+      NUXT_PUBLIC_API_BASE: http://localhost:8080
