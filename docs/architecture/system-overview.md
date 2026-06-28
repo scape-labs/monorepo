@@ -47,3 +47,28 @@ UIs are co-located with their backends under `services/<name>-ui/` (Nuxt 3). Bot
 | `flow-ui`           | 1    | Workflow builder / monitor.       |
 
 Tier 0 = system of record. Tier 1 = user-facing. See `bounded-contexts.md`.
+
+## ⚠️ Services that own money
+
+`service-wirepay` and `service-dura` are **tier 0**. They are the system of
+record for funds movement and credit respectively. **Every deploy, schema
+migration, config change, or CODEOWNERS edit to either of them touches PII and
+the ledger.**
+
+Before touching them:
+
+- **Two-person review is mandatory on every PR** — the workspace
+  `.github/CODEOWNERS` enforces this; do not bypass it.
+- Schema changes to `services/service-wirepay/{ledger,payments,settlement,auth,billing}`
+  or `services/service-dura/{ledger,lending,billing,auth,notifications}` must
+  ship with a written **backout plan** (forward + reverse migration both
+  exercised in staging before merge).
+- **No direct DB writes** outside the owning service. If another service needs
+  the data, subscribe to its AMQP events (see `bounded-contexts.md`).
+- Treat **migration order as load-bearing** — a half-applied forward migration
+  on a money table is an incident, not a bug.
+- Anything money- or PII-shaped must use the helpers in `libraries/money/` and
+  `libraries/auditlog/` — no bespoke types, no `float64` for currency.
+
+If you're not sure whether your change qualifies as "touching the ledger",
+ask in `#scape-platform` before opening the PR.
