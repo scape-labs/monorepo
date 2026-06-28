@@ -39,8 +39,8 @@ slos:
 dependencies:
   upstream: []    # flow is the orchestrator; nothing upstream.
   downstream:
-    - service.wirepay
-    - service.dura
-    - service.bulksms
-    - rabbitmq
-    - postgres
+    - service.wirepay   # flow → wirepay: tasks invoke transfers via wirepay's RPC API
+    - service.dura      # flow → dura: tasks advance the loan lifecycle (disburse, repay)
+    - service.bulksms   # flow → bulksms: tasks dispatch transactional SMS / email notifications
+    - rabbitmq          # async bus for task.completed / task.failed events
+    - postgres          # durable store for workflow and task state
