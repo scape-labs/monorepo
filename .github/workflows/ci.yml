@@ -18,11 +18,11 @@ jobs:
     with:
       matrix:
         service:
-          - bulksms
-          - wirepay
-          - dura
-          - flow
-          - flow-ussd
+          - service.bulksms
+          - service.wirepay
+          - service.dura
+          - service.flow
+          - service.flow-ussd
 
   build:
     needs: [lint, test]
@@ -30,11 +30,11 @@ jobs:
     with:
       matrix:
         service:
-          - bulksms
-          - wirepay
-          - dura
-          - flow
-          - flow-ussd
+          - service.bulksms
+          - service.wirepay
+          - service.dura
+          - service.flow
+          - service.flow-ussd
 
   ui-build:
     uses: scape-labs/ci-actions/.github/workflows/ui-build.yml@v1

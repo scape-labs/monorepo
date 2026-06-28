@@ -13,14 +13,14 @@
 /.golangci.yml                             @scape-labs/platform
 
 # Shared libs
-/shared/                                   @scape-labs/platform
+/libraries/                                @scape-labs/platform
 
 # Per-service CODEOWNERS take precedence over this file.
-/services/bulksms/                         @scape-labs/team-bulksms
-/services/wirepay/                         @scape-labs/team-wirepay
-/services/dura/                            @scape-labs/team-dura
-/services/flow/                            @scape-labs/team-flow
-/services/flow-ussd/                       @scape-labs/team-flow
+/services/service-bulksms/                 @scape-labs/team-bulksms
+/services/service-wirepay/                 @scape-labs/team-wirepay
+/services/service-dura/                    @scape-labs/team-dura
+/services/service-flow/                    @scape-labs/team-flow
+/services/service-flow-ussd/               @scape-labs/team-flow
 
 # Per-UI CODEOWNERS (UIs use a separate file)
 /ui/bulksms-ui/                            @scape-labs/team-bulksms

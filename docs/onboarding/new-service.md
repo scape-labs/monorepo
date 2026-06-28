@@ -6,9 +6,9 @@
 
 ```bash
 cd ~/workspace/scape-labs/monorepo
-mkdir -p services/<name>
+mkdir -p services/service-<name>
 # copy the per-service template:
-cp -R docs/templates/service-template/. services/<name>/
+cp -R docs/templates/service-template/. services/service-<name>/
 ```
 
 ## 2. Wire it into the Go workspace
@@ -17,18 +17,18 @@ Add the new module to `go.work`:
 
 ```go
 use (
-    ./shared
-    ./services/bulksms
+    ./libraries
+    ./services/service-bulksms
     ...
-    ./services/<name>   # ← add this
+    ./services/service-<name>   # ← add this
 )
 ```
 
 ## 3. Initialize the module
 
 ```bash
-cd services/<name>
-go mod init github.com/scape-labs/monorepo/services/<name>
+cd services/service-<name>
+go mod init github.com/scape-labs/monorepo/services/service-<name>
 ```
 
 Add the platform `replace` directive for local dev:

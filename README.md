@@ -6,20 +6,20 @@
 
 ```
 monorepo/
-├── shared/        # shared Go libs (money, tenant, auditlog, idgen)
-├── services/      # one directory per deployable: backend Go module OR Nuxt UI
-│   ├── bulksms/             # tier 1 backend (Go)
-│   ├── wirepay/             # tier 0 backend (Go)
-│   ├── dura/                # tier 0 backend (Go)
-│   ├── flow/                # tier 1 backend (Go)
-│   ├── flow-ussd/           # tier 1 backend (Go)
-│   ├── bulksms-ui/          # tier 1 frontend (Nuxt 3)
-│   ├── bulksms-admin-ui/    # tier 1 frontend (Nuxt 3)
-│   ├── wirepay-ui/          # tier 0 frontend (Nuxt 3)
-│   ├── dura-ui/             # tier 0 frontend (Nuxt 3)
-│   └── flow-ui/             # tier 1 frontend (Nuxt 3)
-├── docs/          # workspace-wide architecture, ADRs, onboarding
-└── .github/       # workspace-wide CI + release workflows
+├── libraries/      # shared Go libs (money, tenant, auditlog, idgen)
+├── services/       # one directory per deployable: backend Go module OR Nuxt UI
+│   ├── service-bulksms/      # tier 1 backend (Go)
+│   ├── service-wirepay/      # tier 0 backend (Go)
+│   ├── service-dura/         # tier 0 backend (Go)
+│   ├── service-flow/         # tier 1 backend (Go)
+│   ├── service-flow-ussd/    # tier 1 backend (Go)
+│   ├── bulksms-ui/           # tier 1 frontend (Nuxt 3)
+│   ├── bulksms-admin-ui/     # tier 1 frontend (Nuxt 3)
+│   ├── wirepay-ui/           # tier 1 frontend (Nuxt 3)
+│   ├── dura-ui/              # tier 1 frontend (Nuxt 3)
+│   └── flow-ui/              # tier 1 frontend (Nuxt 3)
+├── docs/           # workspace-wide architecture, ADRs, onboarding
+└── .github/        # workspace-wide CI + release workflows
 ```
 
 ## Why UIs live under `services/`
@@ -56,7 +56,7 @@ make build
 make test
 
 # run a single service
-cd services/bulksms && make run
+cd services/service-bulksms && make run
 
 # bring up local dev deps (postgres, rabbitmq, valkey, mailpit, otel)
 make dev-deps

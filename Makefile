@@ -8,7 +8,7 @@ SHELL := /bin/bash
 GO ?= go
 MAKEFLAGS += --no-print-directory
 
-SERVICES := bulksms wirepay dura flow flow-ussd
+SERVICES := service-bulksms service-wirepay service-dura service-flow service-flow-ussd
 UIS := bulksms-ui bulksms-admin-ui wirepay-ui dura-ui flow-ui
 
 .DEFAULT_GOAL := help
@@ -27,7 +27,7 @@ build: ## Build every service binary.
 	done
 
 .PHONY: test
-test: ## Run tests in every service + shared/.
+test: ## Run tests in every service + libraries/.
 	@for svc in $(SERVICES); do \
 		echo "==> testing $$svc"; \
 		$(MAKE) -C services/$$svc test || exit 1; \
@@ -44,7 +44,7 @@ tidy: ## Run `go mod tidy` in every module.
 		echo "==> tidying $$svc"; \
 		cd services/$$svc && $(GO) mod tidy && cd ../..; \
 	done
-	cd shared && $(GO) mod tidy && cd ..
+	cd libraries && $(GO) mod tidy && cd ..
 	$(GO) work sync
 
 .PHONY: fmt
@@ -76,3 +76,4 @@ ui-build: ## Build every UI.
 		echo "==> building $$ui"; \
 		cd ui/$$ui && (npm run build || pnpm build || yarn build) && cd ../..; \
 	done
+ne

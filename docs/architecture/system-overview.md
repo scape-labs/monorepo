@@ -18,7 +18,7 @@
    │ kit/     │ ◄── consumed ──► │ services/ │ ── deployed ──►  │ argocd/   │
    │ dsl/     │                  │ (backends │                  │ terraform/│
    │ compiler/│                  │  + UIs)   │                  │  k8s/     │
-   │ ci-actions│                 │ shared/   │                  │           │
+   │ ci-actions│                 │libraries/ │                  │           │
    └──────────┘                  └───────────┘                  └───────────┘
 ```
 
@@ -28,13 +28,13 @@ UIs are co-located with their backends under `services/<name>-ui/` (Nuxt 3). Bot
 
 ### Backends (Go)
 
-| Service    | Tier | Owns                                          |
-| ---------- | ---- | --------------------------------------------- |
-| `bulksms`  | 1    | Bulk messaging (SMS / email / WhatsApp).      |
-| `wirepay`  | 0    | Money movement, system of record for funds.   |
-| `dura`     | 0    | Lender of record (credit, disbursement).      |
-| `flow`     | 1    | Workflow orchestration.                       |
-| `flow-ussd`| 1    | USSD text-based interface to `flow`.          |
+| Service                 | Tier | Owns                                          |
+| ----------------------- | ---- | --------------------------------------------- |
+| `service.bulksms`       | 1    | Bulk messaging (SMS / email / WhatsApp).      |
+| `service.wirepay`       | 0    | Money movement, system of record for funds.   |
+| `service.dura`          | 0    | Lender of record (credit, disbursement).      |
+| `service.flow`          | 1    | Workflow orchestration.                       |
+| `service.flow-ussd`     | 1    | USSD text-based interface to `service.flow`.  |
 
 ### Frontends (Nuxt 3)
 
@@ -42,8 +42,8 @@ UIs are co-located with their backends under `services/<name>-ui/` (Nuxt 3). Bot
 | ------------------- | ---- | --------------------------------- |
 | `bulksms-ui`        | 1    | Customer-facing Sendai dashboard. |
 | `bulksms-admin-ui`  | 1    | Operator / admin dashboard.       |
-| `wirepay-ui`        | 0    | Merchant payment console.         |
-| `dura-ui`           | 0    | Loan officer / borrower portal.   |
+| `wirepay-ui`        | 1    | Merchant payment console.         |
+| `dura-ui`           | 1    | Loan officer / borrower portal.   |
 | `flow-ui`           | 1    | Workflow builder / monitor.       |
 
 Tier 0 = system of record. Tier 1 = user-facing. See `bounded-contexts.md`.

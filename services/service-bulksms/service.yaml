@@ -1,0 +1,58 @@
+---
+# dsl v0.8
+version: "0.8"
+name: service.bulksms
+team: bulksms
+
+build:
+  image: ghcr.io/scape-labs/monorepo/bulksms
+
+deployment:
+  base:
+    replicas: 1
+    ports: { http: 8080 }
+    env: {}
+    health:
+      liveness: /healthz
+      readiness: /readyz
+
+descriptor:
+  description: |
+    TODO: bulk messaging service — SMS / Email / WhatsApp dispatch for
+    marketing and transactional messages across tenants.
+  tier: 1
+  oncall:
+    pagerduty: bulksms-primary
+    slack: "#oncall-bulksms"
+
+slos:
+  availability:
+    target: 99.9
+    window: 30d
+  latency:
+    p99_ms: 500
+    route: /v1/messages
+  error_rate:
+    target: 0.1
+    window: 30d
+
+dependencies:
+  upstream:
+    - service.wirepay   # billing.credited → refill credits
+    - service.flow      # flow.task.completed → trigger scheduled campaign
+  downstream:
+    - rabbitmq  # message.dispatch.requested → dispatch worker
+    - postgres
+    - valkey    # rate-limit, dedupe
+
+egress:
+  smtp:
+    provider: mailpit
+    env: dev
+  http_clients:
+    - name: ecocash
+      base_url: https://api.ecocash.example
+      timeout_ms: 3000
+    - name: mpesa
+      base_url: https://api.mpesa.example
+      timeout_ms: 3000

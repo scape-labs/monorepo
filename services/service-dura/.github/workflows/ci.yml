@@ -1,0 +1,25 @@
+# Per-service CI — inherits from the workspace-level ci.yml by reusing the
+# same reusable workflows.
+
+name: ci-service-dura
+
+on:
+  push:
+    paths:
+      - 'services/service-dura/**'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - 'services/service-dura/**'
+
+jobs:
+  test:
+    uses: scape-labs/ci-actions/.github/workflows/go-test.yml@v1
+    with:
+      service: service.dura
+
+  build:
+    needs: test
+    uses: scape-labs/ci-actions/.github/workflows/go-build.yml@v1
+    with:
+      service: service.dura

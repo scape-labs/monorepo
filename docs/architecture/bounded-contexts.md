@@ -13,5 +13,5 @@
 ## Rules of engagement
 
 1. **No service imports another service's `internal/` package.** Cross-service communication is over AMQP or typed RPC (see `kit/rpc`).
-2. **Shared types live in `shared/`.** Money, tenant, ids, audit events.
+2. **Shared types live in `libraries/`.** Money, tenant, ids, audit events.
 3. **Tier 0 services are the source of truth.** If you need their data, subscribe to their events.

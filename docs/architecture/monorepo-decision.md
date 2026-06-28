@@ -14,7 +14,7 @@ Before this monorepo, every scape-labs service was its own repo. Cross-service r
 
 - **Atomic cross-service refactors.** One branch, one PR, one CI run.
 - **Type-checked event contracts.** All event publishers/consumers live in the same workspace, so `go build` catches mismatches.
-- **Single source of truth for shared libs.** `shared/` replaces the old "go get github.com/scape-labs/money" pattern.
+- **Single source of truth for shared libs.** `libraries/` replaces the old "go get github.com/scape-labs/money" pattern.
 - **Local dev is one repo.** `git clone` once, get everything.
 - **Go workspaces keep module boundaries honest.** Each service still has its own `go.mod`; we only "merge" them at build time via `go.work`.
 

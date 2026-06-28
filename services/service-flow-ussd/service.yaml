@@ -1,0 +1,51 @@
+---
+# dsl v0.8
+version: "0.8"
+name: service.flow-ussd
+team: flow
+
+build:
+  image: ghcr.io/scape-labs/monorepo/flow-ussd
+
+deployment:
+  base:
+    replicas: 1
+    ports: { http: 8080 }
+    env: {}
+    health:
+      liveness: /healthz
+      readiness: /readyz
+
+descriptor:
+  description: |
+    TODO: text-based USSD front-end to flow. Receives USSD gateway callbacks
+    and forwards them as flow tasks; renders flow responses back to the
+    handset as USSD menus.
+  tier: 1
+  oncall:
+    pagerduty: flow-primary
+    slack: "#oncall-flow"
+
+slos:
+  availability:
+    target: 99.9
+    window: 30d
+  latency:
+    p99_ms: 600
+    route: /ussd/callback
+  error_rate:
+    target: 0.1
+    window: 30d
+
+dependencies:
+  upstream:
+    - service.flow   # every menu state is a flow task
+  downstream:
+    - rabbitmq
+    - postgres
+
+egress:
+  http_clients:
+    - name: ussd-gateway
+      base_url: https://api.ussdgateway.example
+      timeout_ms: 2000
