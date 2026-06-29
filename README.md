@@ -58,7 +58,7 @@ make test
 # run a single service
 cd services/service-bulksms && make run
 
-# bring up local dev deps (postgres, rabbitmq, valkey, mailpit, otel)
+# bring up local dev deps (Postgres, RabbitMQ, Valkey, Mailpit, OpenTelemetry)
 make dev-deps
 ```
 
