@@ -55,7 +55,7 @@ make build
 # test everything
 make test
 
-# run a single service
+# run one service locally
 cd services/service-bulksms && make run
 
 # bring up local dev deps (postgres, rabbitmq, valkey, mailpit, otel)
