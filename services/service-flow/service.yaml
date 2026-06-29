@@ -1,4 +1,40 @@
 ---
+# Downstream dependency comment convention (services/service-flow/service.yaml)
+#
+# The `dependencies.downstream` list below names every service and
+# infrastructure component that flow depends on at runtime. Each entry MUST
+# carry a trailing `# ...` comment. This block documents the convention so
+# future edits stay consistent with the rest of the monorepo.
+#
+# What each comment means:
+#   - For a *service* entry (e.g. `service.wirepay`): one short line naming
+#     the shared library under `libraries/` that flow uses to talk to that
+#     service, e.g. `# via libraries/auditlog`. If flow talks to it directly
+#     with no shared lib, say `# direct client, no shared lib`.
+#   - For an *infrastructure* entry (e.g. `rabbitmq`, `postgres`): one short
+#     line naming the library/client wrapper, e.g. `# via libraries/auditlog`
+#     or `# via platform/kit`.
+#
+# Why it matters:
+#   - It makes the hidden coupling between `services/service-flow/` and
+#     `libraries/` explicit in the one file a reader scans first.
+#   - When a library in `libraries/` is renamed or removed, the comment is
+#     the breadcrumb that tells you this service.yaml needs updating.
+#   - It lets reviewers grep `libraries/` from a single place instead of
+#     chasing import paths across `internal/`.
+#
+# How to keep it in sync with libraries/:
+#   1. When you add a `libraries/<pkg>/` directory, audit every
+#      services/*/service.yaml and add it to `dependencies.downstream` (with
+#      its comment) for any service that imports the new package.
+#   2. When you rename/remove a `libraries/<pkg>/`, grep the downstream
+#      comments (`grep -rn "libraries/<pkg>" services/*/service.yaml`) and
+#      fix every stale reference in the same change.
+#   3. Keep each comment to a single line so the list stays scannable; move
+#      longer rationale into `docs/architecture/` and link from the comment.
+#
+# Docs-only convention — do not change the schema or the dependency values
+# themselves. See the PR template for the author checklist that enforces this.
 # dsl v0.8
 version: "0.8"
 name: service.flow
