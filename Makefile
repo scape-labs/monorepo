@@ -8,7 +8,7 @@ SHELL := /bin/bash
 GO ?= go
 MAKEFLAGS += --no-print-directory
 
-SERVICES := service-bulksms service-wirepay service-dura service-flow service-flow-ussd
+SERVICES := service-bulksms service-wirepay service-emicro service-flow service-flow-ussd
 UIS := bulksms-ui bulksms-admin-ui wirepay-ui dura-ui flow-ui
 
 .DEFAULT_GOAL := help

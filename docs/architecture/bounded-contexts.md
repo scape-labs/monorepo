@@ -6,7 +6,7 @@
 | ----------- | --------------------------------------------------- | ---------------------------------------- | -------------------------------------------- |
 | `bulksms`   | Campaign, Message, Recipient                        | `message.sent`, `message.failed`         | `billing.credited` (from wirepay)            |
 | `wirepay`   | Account, Transfer, Balance                          | `transfer.completed`, `billing.credited` | `flow.task.completed`                        |
-| `dura`      | Loan, Repayment, Disbursement                       | `loan.disbursed`, `loan.repaid`          | `wirepay.transfer.completed`                 |
+| `emicro`    | Loan, Repayment, Disbursement                       | `loan.disbursed`, `loan.repaid`          | `wirepay.transfer.completed`                 |
 | `flow`      | Workflow, Task                                      | `flow.task.completed`                    | `*` (it's the orchestrator)                  |
 | `flow-ussd` | Session, Menu                                       | (none — it's a UI)                       | n/a                                          |
 

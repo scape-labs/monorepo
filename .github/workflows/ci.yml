@@ -20,7 +20,7 @@ jobs:
         service:
           - service.bulksms
           - service.wirepay
-          - service.dura
+          - service.emicro
           - service.flow
           - service.flow-ussd
 
@@ -32,7 +32,7 @@ jobs:
         service:
           - service.bulksms
           - service.wirepay
-          - service.dura
+          - service.emicro
           - service.flow
           - service.flow-ussd
 

@@ -1,0 +1,4 @@
+# emicro ownership.
+# Falls back to the workspace-level /scape-labs/team-emicro handle if absent.
+
+/                                      @scape-labs/team-emicro

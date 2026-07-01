@@ -18,7 +18,7 @@
 # Per-service CODEOWNERS take precedence over this file.
 /services/service-bulksms/                 @scape-labs/team-bulksms
 /services/service-wirepay/                 @scape-labs/team-wirepay
-/services/service-dura/                    @scape-labs/team-dura
+/services/service-emicro/                  @scape-labs/team-emicro
 /services/service-flow/                    @scape-labs/team-flow
 /services/service-flow-ussd/               @scape-labs/team-flow
 

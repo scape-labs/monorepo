@@ -42,7 +42,7 @@ slos:
 dependencies:
   upstream:
     - service.flow      # flow.task.completed → kick off transfer
-    - service.dura      # loan.disbursed → initiate disbursement transfer
+    - service.emicro    # loan.disbursed → initiate disbursement transfer
   downstream:
     - rabbitmq  # transfer.* events
     - postgres  # ledger (system of record)

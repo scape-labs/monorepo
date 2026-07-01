@@ -10,7 +10,7 @@ monorepo/
 ├── services/       # one directory per deployable: Go backend module or Nuxt UI
 │   ├── service-bulksms/      # tier 1 backend (Go)
 │   ├── service-wirepay/      # tier 0 backend (Go)
-│   ├── service-dura/         # tier 0 backend (Go)
+│   ├── service-emicro/       # tier 0 backend (Go)
 │   ├── service-flow/         # tier 1 backend (Go)
 │   ├── service-flow-ussd/    # tier 1 backend (Go)
 │   ├── bulksms-ui/           # tier 1 frontend (Nuxt 3)
