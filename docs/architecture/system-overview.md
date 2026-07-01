@@ -32,7 +32,7 @@ UIs are co-located with their backends under `services/<name>-ui/` (Nuxt 3). Bot
 | ----------------------- | ---- | --------------------------------------------- |
 | `service.bulksms`       | 1    | Bulk messaging (SMS / email / WhatsApp).      |
 | `service.wirepay`       | 0    | Money movement, system of record for funds.   |
-| `service.dura`          | 0    | Lender of record (credit, disbursement).      |
+| `service.emicro`        | 0    | Lender of record (credit, disbursement).      |
 | `service.flow`          | 1    | Workflow orchestration.                       |
 | `service.flow-ussd`     | 1    | USSD text-based interface to `service.flow`.  |
 

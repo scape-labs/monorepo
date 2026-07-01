@@ -1,0 +1,54 @@
+---
+# dsl v0.8
+version: "0.8"
+name: service.emicro
+team: emicro
+
+build:
+  image: ghcr.io/scape-labs/monorepo/emicro
+
+deployment:
+  base:
+    replicas: 1
+    ports: { http: 8080 }
+    env: {}
+    health:
+      liveness: /healthz
+      readiness: /readyz
+
+descriptor:
+  description: |
+    TODO: lender of record — owns loans, repayments, disbursements. Sits at
+    tier 0 because disbursements and balance figures are authoritative here.
+  tier: 0
+  oncall:
+    pagerduty: emicro-primary
+    slack: "#oncall-emicro"
+
+slos:
+  availability:
+    target: 99.95
+    window: 30d
+  latency:
+    p99_ms: 1000
+    route: /v1/loans
+  error_rate:
+    target: 0.05
+    window: 30d
+
+dependencies:
+  upstream:
+    - service.wirepay  # transfer.completed → mark repayment received
+    - service.flow     # flow.task.completed → advance loan workflow
+  downstream:
+    - rabbitmq
+    - postgres
+
+egress:
+  http_clients:
+    - name: credit-bureau
+      base_url: https://api.creditbureau.example
+      timeout_ms: 3000
+    - name: sms-gateway
+      base_url: https://api.smsgateway.example
+      timeout_ms: 3000

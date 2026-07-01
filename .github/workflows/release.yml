@@ -26,7 +26,7 @@ jobs:
       - id: detect
         uses: scape-labs/ci-actions/actions/detect-changed-services@v1
         with:
-          services: service.bulksms,service.wirepay,service.dura,service.flow,service.flow-ussd
+          services: service.bulksms,service.wirepay,service.emicro,service.flow,service.flow-ussd
 
   release-service:
     needs: detect-changes

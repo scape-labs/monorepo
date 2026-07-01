@@ -3,7 +3,7 @@ go 1.24
 use (
 	./libraries
 	./services/service-bulksms
-	./services/service-dura
+	./services/service-emicro
 	./services/service-flow
 	./services/service-flow-ussd
 	./services/service-wirepay

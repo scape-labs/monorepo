@@ -40,7 +40,7 @@ dependencies:
   upstream: []    # flow is the orchestrator; nothing upstream.
   downstream:
     - service.wirepay
-    - service.dura
+    - service.emicro
     - service.bulksms
     - rabbitmq
     - postgres
