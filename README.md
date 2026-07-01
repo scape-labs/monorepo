@@ -7,7 +7,7 @@
 ```
 monorepo/
 ├── libraries/      # shared Go libs (money, tenant, auditlog, idgen)
-├── services/       # one directory per deployable: backend Go module OR Nuxt UI
+├── services/       # one directory per deployable: Go backend module or Nuxt UI
 │   ├── service-bulksms/      # tier 1 backend (Go)
 │   ├── service-wirepay/      # tier 0 backend (Go)
 │   ├── service-dura/         # tier 0 backend (Go)
